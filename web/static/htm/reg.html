@@ -1,0 +1,45 @@
+<div class="am-g">
+    <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+        <br>
+        <br>
+
+        <form class="am-form">
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-user am-icon-fw"></i>
+                <input type="text" id="user" class="am-form-field" placeholder="你的大名">
+            </div>
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-lock am-icon-fw"></i>
+                <input type="password" id="pwd" class="am-form-field" placeholder="你的密码">
+            </div>
+            <div class="am-form-group am-form-icon">
+                <i class="am-icon-lock am-icon-fw"></i>
+                <input type="password" id="pwd-again" class="am-form-field" placeholder="还是你的密码">
+            </div>
+
+            <div class="am-cf">
+                <button id="submit" class="am-btn am-btn-primary am-fl">注 册</button>
+            </div>
+        </form>
+        <hr>
+    </div>
+</div>
+<script>
+    $('#submit').click(function(){
+        var user = $('#user').val().trim(),pwd = $('#pwd').val().trim(),pwd2 = $('#pwd-again').val().trim();
+        if(pwd!=pwd2) {
+            _t.alertBeforeShow("密码不一致");
+            return;
+        }
+        var _t = $(this).prop('disabled',true);
+        $.post(AJAX_URL,{act:'reg',user:user,pwd:pwd}, function (d) {
+            _t.prop('disabled',false);
+            d = JSON.parse(d);
+            if(d.status==-1){
+                _t.alertBeforeShow(d.msg);
+            }else{
+                _t.infoBeforeShow(d.msg);
+            }
+        })
+    });
+</script>
