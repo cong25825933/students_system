@@ -1,6 +1,6 @@
 # 学生信息管理系统
 
-[项目地址](http://moyuyc.xtz/students)
+[项目地址](http://moyuyc.xyz/students)
 
 功能：
 - 用户注册登录
