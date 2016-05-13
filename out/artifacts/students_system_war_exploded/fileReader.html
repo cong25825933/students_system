@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="static/assets/js/jquery.min.js"></script>
+</head>
+<body>
+<input type="file" id="file">
+</body>
+<script>
+    $('#file').on('change', function (e) {
+        var file = this.files[0];
+        var fr = new FileReader(),f1 = new FileReader(),f2 = new FileReader(),f4 = new FileReader();
+        fr.readAsBinaryString(file);
+        f1.readAsArrayBuffer(file);
+        f2.readAsText(file);
+        f4.readAsDataURL(file);
+        fr.onload = function () {
+            $(document.body).append('<p>BinaryString <img src="'+fr.result+'"/></p>');
+            console.log(fr.result,'BinaryString');
+        };
+        f1.onload = function (e) {
+            $(document.body).append('<p>ArrayBuffer <img src="'+f1.result+'"/></p>');
+            console.log(f1.result,'ArrayBuffer');
+        };
+        f2.onload = function (e) {
+            console.log(f2.result,'Text');
+        };
+        f4.onload = function () {
+            $(document.body).append('<p>DataURL <img src="'+f4.result+'"/></p>');
+        }
+    })
+</script>
+</html>

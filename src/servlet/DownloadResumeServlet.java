@@ -28,6 +28,7 @@ public class DownloadResumeServlet extends HttpServlet {
 
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+
         HttpServletRequest request = (HttpServletRequest) req;
         User me = (User) request.getSession().getAttribute("username");
         if(me==null) return;

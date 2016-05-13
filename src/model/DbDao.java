@@ -32,6 +32,7 @@ public class DbDao {
         return conn;
     }
     public ResultSet select(String sql,Object... args) throws SQLException {
+//        getConn().createStatement().executeQuery();
         PreparedStatement ps = getConn().prepareStatement(sql);
         for (int i = 0; i < args.length; i++) {
             ps.setObject(i+1,args[i]);
